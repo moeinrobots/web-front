@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./fonts.css";
 import "./header.css";
+import "./home-polish.css";
 import "./case.css";
 import "./admin.css";
 
