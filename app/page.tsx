@@ -1,0 +1,29 @@
+import Link from "next/link";
+import { Footer, Header, Icon, Mockup, SectionTitle } from "./components";
+import { faqs, portfolio, services, testimonials } from "./data";
+import { getCollection } from "../lib/api";
+
+export default async function Home() {
+  const [liveServices,livePortfolio,liveTestimonials,liveFaqs]=await Promise.all([getCollection("services",services),getCollection("projects",portfolio),getCollection("testimonials",testimonials),getCollection("faqs",faqs)]);
+  return <><Header /><main>
+    <section className="hero"><div className="container hero-grid">
+      <div className="hero-copy"><span className="eyebrow">طراحی و توسعه وب‌سایت حرفه‌ای</span><h1>وب‌سایتی که فقط زیبا نیست؛<br/><em>برای رشد کسب‌وکار شما ساخته شده است.</em></h1><p>با طراحی سایت‌های مدرن، سریع و بهینه، کمک می‌کنیم در فضای آنلاین دیده شوید، اعتماد مشتریان را جلب کنید و بیشتر بفروشید.</p><div className="actions"><Link className="btn primary" href="/contact">درخواست مشاوره رایگان <span>←</span></Link><Link className="btn secondary" href="/portfolio">مشاهده نمونه‌کارها</Link></div><div className="hero-notes"><span>✓ جلسه مشاوره رایگان</span><span>✓ تحویل به‌موقع</span><span>✓ پشتیبانی واقعی</span></div></div>
+      <Mockup />
+    </div></section>
+
+    <section className="trust container"><div className="stats"><div><b>۹۸٪</b><span>رضایت مشتریان</span></div><div><b>+۱۵۰</b><span>مشتری فعال</span></div><div><b>+۸</b><span>سال تجربه</span></div><div><b>+۲۰۰</b><span>پروژه موفق</span></div></div><div className="logos"><small>برخی از مشتریان ما</small><div><b>دیجی‌کالا</b><b>اسنپ</b><b>همراه اول</b><b>ماموت</b></div></div></section>
+
+    <section className="section container"><SectionTitle kicker="خدمات ما" title="تمامی خدمات طراحی سایت در یکجا" text="از طراحی رابط کاربری تا توسعه اختصاصی، کنار شما هستیم."/><div className="service-grid">{liveServices.map((s)=><article className="service-card" key={s.slug}><Icon value={s.icon}/><h3>{s.title}</h3><p>{s.short}</p><Link href={`/services#${s.slug}`}>مشاهده جزئیات ←</Link></article>)}</div></section>
+
+    <section className="section pale"><div className="container split"><div className="feature-visual"><Mockup compact/><span className="float-card fc1">۹۸٪ رضایت مشتریان</span><span className="float-card fc2">رشد پایدار کسب‌وکار</span></div><div><SectionTitle align="right" kicker="چرا وب‌ساز؟" title="تفاوت ما در جزئیات است" text="ما فقط یک سایت تحویل نمی‌دهیم؛ یک ابزار قدرتمند برای رشد کسب‌وکار شما می‌سازیم."/><div className="feature-list">{["طراحی اختصاصی متناسب با برند","سرعت و امنیت بالا","سئوی تکنیکال از روز اول","تجربه کاربری هدفمند","کدنویسی تمیز و مقیاس‌پذیر","پشتیبانی شفاف و متعهدانه"].map((x,i)=><div key={x}><Icon value={["✦","⚡","⌁","◎","</>","♡"][i]}/><span>{x}</span></div>)}</div></div></div></section>
+
+    <section className="section container"><SectionTitle kicker="فرآیند کار" title="از ایده تا موفقیت، در ۵ مرحله" text="هر مرحله شفاف، قابل پیگیری و با تأیید شما انجام می‌شود."/><div className="steps">{["مشاوره و تحلیل","طراحی وایرفریم","طراحی UI/UX","توسعه و پیاده‌سازی","تحویل و پشتیبانی"].map((x,i)=><div key={x}><span>{i+1}</span><b>{x}</b><small>{["شناخت اهداف و مخاطبان","ساخت مسیر و ساختار صفحات","خلق ظاهر اختصاصی برند","کدنویسی سریع و استاندارد","آموزش، انتشار و همراهی"][i]}</small></div>)}</div></section>
+
+    <section className="section work-section"><div className="container"><SectionTitle kicker="نمونه‌کارهای ما" title="پروژه‌هایی که با افتخار انجام داده‌ایم" text="هر پروژه، پاسخی اختصاصی به یک چالش واقعی است."/><div className="portfolio-grid">{livePortfolio.slice(0,4).map((p,i)=><Link href={`/portfolio/${p.slug}`} className={`portfolio-card tone-${i+1}`} key={p.slug}><div className="browser-shot"><i/><i/><i/><div><b>{p.title}</b><span>{p.category}</span></div></div><h3>{p.title}</h3><p>{p.category}</p></Link>)}</div><div className="center"><Link className="text-link" href="/portfolio">مشاهده همه پروژه‌ها ←</Link></div></div></section>
+
+    <section className="section container"><SectionTitle kicker="نظرات مشتریان" title="آنچه مشتریان ما می‌گویند" text="اعتماد شما، ارزشمندترین سرمایه ماست."/><div className="testimonial-grid">{liveTestimonials.map(t=><figure key={t.name}><div className="stars">★★★★★</div><blockquote>«{t.text}»</blockquote><figcaption><span>{t.name.charAt(0)}</span><div><b>{t.name}</b><small>{t.role}</small></div></figcaption></figure>)}</div></section>
+
+    <section className="section faq-wrap"><div className="container faq-grid"><div><span className="eyebrow">سؤالات متداول</span><h2>پاسخ به پرسش‌های شما</h2><p>اگر پاسخ پرسش خود را پیدا نکردید، با ما تماس بگیرید.</p><Link className="text-link" href="/contact">گفت‌وگو با مشاور ←</Link></div><div>{liveFaqs.slice(0,5).map((f,i)=><details key={f.q} open={i===0}><summary>{f.q}<span>+</span></summary><p>{f.a}</p></details>)}</div></div></section>
+    <section className="cta"><div className="container"><span>شروع یک همکاری موفق</span><h2>آماده‌اید کسب‌وکارتان را حرفه‌ای‌تر کنید؟</h2><p>اولین قدم را با یک جلسه مشاوره رایگان و بدون تعهد بردارید.</p><div className="actions"><Link className="btn light" href="/contact">درخواست مشاوره رایگان</Link><a className="btn ghost" href="tel:+982191000000">۰۲۱-۹۱۰۰۰۰۰۰</a></div></div></section>
+  </main><Footer /></>;
+}

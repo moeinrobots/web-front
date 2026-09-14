@@ -1,0 +1,7 @@
+@font-face{font-family:"Websaz";src:url("/fonts/ultra_light.ttf") format("truetype");font-style:normal;font-weight:100;font-display:swap}
+@font-face{font-family:"Websaz";src:url("/fonts/light.ttf") format("truetype");font-style:normal;font-weight:300;font-display:swap}
+@font-face{font-family:"Websaz";src:url("/fonts/regular.ttf") format("truetype");font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:"Websaz";src:url("/fonts/medium.ttf") format("truetype");font-style:normal;font-weight:500;font-display:swap}
+@font-face{font-family:"Websaz";src:url("/fonts/bold.ttf") format("truetype");font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:"Websaz";src:url("/fonts/black.ttf") format("truetype");font-style:normal;font-weight:900;font-display:swap}
+html,body,button,input,textarea,select{font-family:"Websaz",Tahoma,Arial,sans-serif}
