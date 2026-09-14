@@ -3,6 +3,7 @@ import "./globals.css";
 import "./fonts.css";
 import "./header.css";
 import "./home-polish.css";
+import "./hero-refresh.css";
 import "./case.css";
 import "./admin.css";
 
