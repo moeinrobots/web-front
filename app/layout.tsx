@@ -6,6 +6,7 @@ import "./home-polish.css";
 import "./hero-refresh.css";
 import "./case.css";
 import "./marketing-pages.css";
+import "./content-pages.css";
 import "./admin.css";
 
 export const metadata: Metadata = {
