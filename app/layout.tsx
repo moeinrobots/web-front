@@ -7,6 +7,7 @@ import "./hero-refresh.css";
 import "./case.css";
 import "./marketing-pages.css";
 import "./content-pages.css";
+import "./portfolio-images.css";
 import "./admin.css";
 
 export const metadata: Metadata = {

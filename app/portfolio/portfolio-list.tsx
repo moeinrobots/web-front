@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useMemo, useState } from "react";
 
 export type PortfolioItem = {
@@ -11,6 +12,7 @@ export type PortfolioItem = {
   description?: string;
   services?: string[];
   website_url?: string;
+  cover_url?: string;
 };
 
 const categoryGroups = [
@@ -50,12 +52,7 @@ export function PortfolioList({ items }: { items: PortfolioItem[] }) {
         {visible.map((item, index) => (
           <article className={`mkt-project-card tone-${(index % 4) + 1}`} key={item.slug}>
             <a className="mkt-project-cover" href={item.website_url || `/portfolio/${item.slug}`} target={item.website_url ? "_blank" : undefined} rel={item.website_url ? "noreferrer" : undefined} aria-label={`مشاهده پروژه ${item.title}`}>
-              <span className="mkt-browser-dots"><i></i><i></i><i></i></span>
-              <div className="mkt-project-screen">
-                <small>{item.category}</small>
-                <b>{item.title}</b>
-                <span></span><span></span><span></span>
-              </div>
+              {item.cover_url && <Image className="portfolio-site-shot" src={item.cover_url} alt={`نمای وب‌سایت ${item.title}`} fill sizes="(max-width: 900px) 100vw, 50vw" />}
             </a>
             <div className="mkt-project-body">
               <div className="mkt-project-meta"><span>{item.category}</span><small>مطالعه موردی</small></div>

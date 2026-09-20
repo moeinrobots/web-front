@@ -1,0 +1,42 @@
+.project-preview,
+.mkt-project-cover,
+.case-site-preview {
+  position: relative;
+  overflow: hidden;
+  background: #eef2f8;
+}
+
+.project-preview {
+  padding: 0;
+}
+
+.portfolio-site-shot,
+.case-site-preview img {
+  object-fit: cover;
+  object-position: top center;
+  transition: transform .45s ease;
+}
+
+.project-tile:hover .portfolio-site-shot,
+.mkt-project-card:hover .portfolio-site-shot {
+  transform: scale(1.025);
+}
+
+.mkt-project-cover {
+  padding: 0;
+  background: #eef2f8 !important;
+}
+
+.case-site-preview {
+  width: min(900px, 100%);
+  height: 430px;
+  margin: auto;
+  border-radius: 15px;
+  box-shadow: 0 25px 60px rgba(24, 53, 110, .2);
+}
+
+@media (max-width: 600px) {
+  .case-site-preview {
+    height: 260px;
+  }
+}
