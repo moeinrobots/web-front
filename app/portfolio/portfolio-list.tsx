@@ -10,6 +10,7 @@ export type PortfolioItem = {
   result?: string;
   description?: string;
   services?: string[];
+  website_url?: string;
 };
 
 const categoryGroups = [
@@ -48,20 +49,20 @@ export function PortfolioList({ items }: { items: PortfolioItem[] }) {
       <div className="mkt-portfolio-grid">
         {visible.map((item, index) => (
           <article className={`mkt-project-card tone-${(index % 4) + 1}`} key={item.slug}>
-            <Link className="mkt-project-cover" href={`/portfolio/${item.slug}`} aria-label={`مشاهده پروژه ${item.title}`}>
+            <a className="mkt-project-cover" href={item.website_url || `/portfolio/${item.slug}`} target={item.website_url ? "_blank" : undefined} rel={item.website_url ? "noreferrer" : undefined} aria-label={`مشاهده پروژه ${item.title}`}>
               <span className="mkt-browser-dots"><i></i><i></i><i></i></span>
               <div className="mkt-project-screen">
                 <small>{item.category}</small>
                 <b>{item.title}</b>
                 <span></span><span></span><span></span>
               </div>
-            </Link>
+            </a>
             <div className="mkt-project-body">
               <div className="mkt-project-meta"><span>{item.category}</span><small>مطالعه موردی</small></div>
-              <h2><Link href={`/portfolio/${item.slug}`}>{item.title}</Link></h2>
+              <h2>{item.website_url ? <a href={item.website_url} target="_blank" rel="noreferrer">{item.title}</a> : <Link href={`/portfolio/${item.slug}`}>{item.title}</Link>}</h2>
               <p>{item.description || item.result || "طراحی و توسعه وب‌سایت با تمرکز بر نیازهای اصلی کاربران و اهداف کسب‌وکار."}</p>
               {item.services && <div className="mkt-project-tags">{item.services.map((service) => <span key={service}>{service}</span>)}</div>}
-              <Link className="mkt-project-link" href={`/portfolio/${item.slug}`}>مشاهده جزئیات پروژه <b>←</b></Link>
+              {item.website_url ? <a className="mkt-project-link" href={item.website_url} target="_blank" rel="noreferrer">مشاهده وب‌سایت <b>←</b></a> : <Link className="mkt-project-link" href={`/portfolio/${item.slug}`}>مشاهده جزئیات پروژه <b>←</b></Link>}
             </div>
           </article>
         ))}

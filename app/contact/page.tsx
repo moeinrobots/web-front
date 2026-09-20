@@ -26,16 +26,20 @@ export default function ContactPage() {
               <div className="mkt-contact-aside-head">
                 <span>راه‌های ارتباطی</span>
                 <h2>پاسخ‌گویی روشن و پیگیری منظم</h2>
-                <p>برای پرسش‌های اولیه می‌توانید مستقیماً با ما تماس بگیرید یا ایمیل بفرستید.</p>
+                <p>برای پرسش‌های اولیه می‌توانید مستقیماً تماس بگیرید، در تلگرام پیام بدهید یا ایمیل بفرستید.</p>
               </div>
 
-              <a className="mkt-contact-method" href="tel:+982191000000">
+              <a className="mkt-contact-method" href="tel:+989157364942">
                 <i>☎</i>
-                <span><small>تلفن دفتر</small><b dir="ltr">۰۲۱-۹۱۰۰۰۰۰۰</b></span>
+                <span><small>شماره تماس</small><b dir="ltr">۰۹۱۵۷۳۶۴۹۴۲</b></span>
               </a>
-              <a className="mkt-contact-method" href="mailto:hello@websaz.ir">
+              <a className="mkt-contact-method" href="mailto:info@websaz.ir">
                 <i>✉</i>
-                <span><small>پست الکترونیکی</small><b dir="ltr">hello@websaz.ir</b></span>
+                <span><small>پست الکترونیکی</small><b dir="ltr">info@websaz.ir</b></span>
+              </a>
+              <a className="mkt-contact-method" href="https://t.me/+989157364942" target="_blank" rel="noreferrer">
+                <i>➤</i>
+                <span><small>پیام‌رسان</small><b>تلگرام</b></span>
               </a>
               <div className="mkt-contact-method">
                 <i>◷</i>
@@ -43,8 +47,8 @@ export default function ContactPage() {
               </div>
 
               <div className="mkt-meeting-note">
-                <b>جلسه حضوری یا آنلاین</b>
-                <p>جلسه‌های بررسی پروژه با هماهنگی قبلی، به‌صورت آنلاین یا حضوری برگزار می‌شوند.</p>
+                <b>جلسه آنلاین یا تلفنی</b>
+                <p>جلسه‌های بررسی پروژه با هماهنگی قبلی، به‌صورت آنلاین یا تلفنی برگزار می‌شوند.</p>
               </div>
             </aside>
           </div>
