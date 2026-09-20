@@ -16,7 +16,7 @@ npm run dev
 
 ## متغیرهای محیطی
 
-- `NEXT_PUBLIC_API_URL`: نشانی عمومی API، مانند `https://api.example.com/api`
+- `NEXT_PUBLIC_API_URL`: نشانی عمومی API، مانند `https://websaz.site/api`
 - `INTERNAL_API_URL`: نشانی API برای درخواست‌های سمت سرور
 - `NEXT_PUBLIC_SITE_URL`: نشانی نهایی وب‌سایت
 

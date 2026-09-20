@@ -33,9 +33,9 @@ export default function ContactPage() {
                 <i>☎</i>
                 <span><small>شماره تماس</small><b dir="ltr">۰۹۱۵۷۳۶۴۹۴۲</b></span>
               </a>
-              <a className="mkt-contact-method" href="mailto:info@websaz.ir">
+              <a className="mkt-contact-method" href="mailto:info@websaz.site">
                 <i>✉</i>
-                <span><small>پست الکترونیکی</small><b dir="ltr">info@websaz.ir</b></span>
+                <span><small>پست الکترونیکی</small><b dir="ltr">info@websaz.site</b></span>
               </a>
               <a className="mkt-contact-method" href="https://t.me/+989157364942" target="_blank" rel="noreferrer">
                 <i>➤</i>
