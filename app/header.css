@@ -9,4 +9,10 @@
   .sidebar-head .brand-favicon{width:32px;height:32px}
   .site-nav .nav-links{overflow-y:auto;overscroll-behavior:contain}
   .sidebar-close{display:grid;place-items:center;line-height:1}
+  .site-header .site-nav{direction:rtl;text-align:right}
+  .site-nav .nav-links{align-items:stretch;text-align:right}
+  .site-nav .nav-links>a{display:block;width:100%;text-align:right}
+  .sidebar-foot{align-items:stretch;text-align:right}
+  .sidebar-foot>span,.sidebar-foot>a{text-align:right}
+  .sidebar-foot .btn{justify-content:center;text-align:center}
 }
