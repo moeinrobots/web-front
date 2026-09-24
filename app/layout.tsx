@@ -1,21 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import "./fonts.css";
-import "./header.css";
-import "./home-polish.css";
-import "./hero-refresh.css";
-import "./case.css";
-import "./marketing-pages.css";
-import "./content-pages.css";
-import "./portfolio-images.css";
-import "./admin.css";
-
-export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL||"https://websaz.site"),
-  title: {default:"وب‌ساز | طراحی و توسعه وب‌سایت حرفه‌ای",template:"%s | وب‌ساز"},
-  description:"طراحی سایت شرکتی، فروشگاهی و اختصاصی با تمرکز بر تجربه کاربری، سرعت، سئو و رشد کسب‌وکار.",
-  icons:{icon:"/favicon.svg"},
-  openGraph:{siteName:"وب‌ساز",title:"وب‌ساز | طراحی سایت برای رشد کسب‌وکار شما",description:"طراحی و توسعه وب‌سایت‌های مدرن، سریع و هدفمند.",images:[{url:"/og.png",width:1536,height:1024,alt:"وب‌ساز، طراحی سایت برای رشد کسب‌وکار شما"}],locale:"fa_IR",type:"website"},
-  twitter:{card:"summary_large_image",title:"وب‌ساز | طراحی سایت حرفه‌ای",description:"وب‌سایتی که برای رشد کسب‌وکار شما ساخته شده است.",images:["/og.png"]},
-};
-export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="fa" dir="rtl"><body>{children}</body></html>}
+import "./globals.css";import "./fonts.css";import "./header.css";import "./home-polish.css";import "./hero-refresh.css";import "./case.css";import "./marketing-pages.css";import "./content-pages.css";import "./portfolio-images.css";import "./admin.css";
+import {absoluteUrl,defaultDescription,siteName} from "../lib/seo";
+export const metadata:Metadata={metadataBase:new URL(`${process.env.NEXT_PUBLIC_SITE_URL||"https://websaz.site"}/`),title:{default:"طراحی سایت حرفه‌ای برای رشد کسب‌وکار | وب‌ساز",template:"%s | وب‌ساز"},description:defaultDescription,alternates:{canonical:absoluteUrl("/")},robots:{index:true,follow:true},icons:{icon:"/favicon.svg"},openGraph:{siteName,title:"طراحی سایت حرفه‌ای برای رشد کسب‌وکار | وب‌ساز",description:defaultDescription,url:absoluteUrl("/"),images:[{url:absoluteUrl("/og.png"),width:1536,height:1024,alt:"وب‌ساز؛ طراحی سایت حرفه‌ای"}],locale:"fa_IR",type:"website"},twitter:{card:"summary_large_image",title:"طراحی سایت حرفه‌ای برای رشد کسب‌وکار | وب‌ساز",description:defaultDescription,images:[absoluteUrl("/og.png")]}};
+export default function RootLayout({children}:{children:React.ReactNode}){const schema={"@context":"https://schema.org","@type":"ProfessionalService",name:siteName,url:absoluteUrl("/"),logo:absoluteUrl("/favicon.svg"),description:defaultDescription};return <html lang="fa" dir="rtl"><body>{children}<script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/></body></html>}

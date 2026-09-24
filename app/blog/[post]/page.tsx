@@ -5,9 +5,10 @@ import { Footer, Header } from "../../components";
 import { posts } from "../../data";
 import { getItemOrNull } from "../../../lib/api";
 import type { Post } from "../page";
+import { pageMetadata } from "../../../lib/seo";
 
 export async function generateStaticParams(){return posts.map(post=>({post:post.slug}))}
-export async function generateMetadata({params}:{params:Promise<{post:string}>}):Promise<Metadata>{const {post}=await params;const fallback=posts.find(item=>item.slug===post);const item=await getItemOrNull<Post>("posts",post,fallback);return item?{title:item.title,description:item.excerpt}:{} }
+export async function generateMetadata({params}:{params:Promise<{post:string}>}):Promise<Metadata>{const {post}=await params;const fallback=posts.find(item=>item.slug===post);const item=await getItemOrNull<Post>("posts",post,fallback);return item?pageMetadata(item.title,item.excerpt,`/blog/${post}`):{robots:{index:false,follow:false}} }
 
 export default async function PostPage({params}:{params:Promise<{post:string}>}){
   const {post}=await params;const fallback=posts.find(item=>item.slug===post);const item=await getItemOrNull<Post>("posts",post,fallback);if(!item)notFound();
