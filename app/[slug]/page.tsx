@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { Footer, Header, Icon, PageHero, SectionTitle } from "../components";
 import { faqs, portfolio, services } from "../data";
 import { ContactForm } from "../contact-form";
+import type { Metadata } from "next";
+import { pageMetadata } from "../../lib/seo";
 
 const pages:Record<string,{kicker:string,title:string,text:string}>={
  services:{kicker:"راهکارهای ما",title:"خدمات کامل طراحی و توسعه وب",text:"از استراتژی و طراحی تا اجرا، رشد و پشتیبانی؛ هر آنچه برای حضور قدرتمند آنلاین نیاز دارید."},
@@ -13,6 +15,7 @@ const pages:Record<string,{kicker:string,title:string,text:string}>={
  contact:{kicker:"شروع همکاری",title:"بیایید درباره پروژه شما صحبت کنیم",text:"اهداف و نیازهای خود را برای ما بنویسید؛ حداکثر تا یک روز کاری با شما تماس می‌گیریم."},
 };
 export function generateStaticParams(){return Object.keys(pages).map(slug=>({slug}))}
+export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{const {slug}=await params;const p=pages[slug];return p?pageMetadata(p.title,p.text,`/${slug}`):{robots:{index:false,follow:false}}}
 export default async function GeneralPage({params}:{params:Promise<{slug:string}>}){const {slug}=await params; const p=pages[slug]; if(!p)notFound();return <><Header/><main><PageHero {...p}/>{slug==="services"&&<Services/>}{slug==="portfolio"&&<Portfolio/>}{slug==="pricing"&&<Pricing/>}{slug==="about"&&<About/>}{slug==="blog"&&<Blog/>}{slug==="contact"&&<Contact/>}</main><Footer/></>}
 function Services(){return <><section className="section container"><div className="detail-grid">{services.map((s,i)=><article id={s.slug} key={s.slug}><div><Icon value={s.icon}/><small>۰{i+1}</small></div><h2>{s.title}</h2><p>{s.short} با تحلیل نیازهای کسب‌وکار، معماری درست و اجرای دقیق، راهکاری می‌سازیم که امروز کارآمد و فردا توسعه‌پذیر باشد.</p><ul><li>طراحی اختصاصی و واکنش‌گرا</li><li>استانداردهای سرعت و دسترس‌پذیری</li><li>آموزش و پشتیبانی پس از تحویل</li></ul><Link href="/contact">دریافت مشاوره ←</Link></article>)}</div></section><Process/></>}
 function Portfolio(){return <section className="section container"><div className="filter"><button className="active">همه</button><button>فروشگاهی</button><button>شرکتی</button><button>محصول دیجیتال</button></div><div className="portfolio-grid large">{portfolio.map((p,i)=><article className={`portfolio-card tone-${i%4+1}`} key={p.slug}><div className="browser-shot"><i/><i/><i/><div><b>{p.title}</b><span>{p.category}</span></div></div><div className="case-meta"><div><h3>{p.title}</h3><p>{p.category}</p></div><strong>{p.result}</strong></div></article>)}</div></section>}

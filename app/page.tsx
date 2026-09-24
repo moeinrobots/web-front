@@ -3,11 +3,13 @@ import Image from "next/image";
 import { Footer, Header, Icon, SectionTitle } from "./components";
 import { faqs, portfolio, services } from "./data";
 import { getCollection } from "../lib/api";
+import { absoluteUrl } from "../lib/seo";
 
 export default async function Home() {
   const [liveServices,liveFaqs]=await Promise.all([getCollection("services",services),getCollection("faqs",faqs)]);
   const livePortfolio=portfolio;
-  return <><Header /><main>
+  const schema={"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":`${absoluteUrl("/")}#organization`,name:"وب‌ساز",url:absoluteUrl("/"),logo:absoluteUrl("/favicon.svg"),description:"طراحی و توسعه وب‌سایت‌های حرفه‌ای، سریع و هدفمند برای رشد واقعی کسب‌وکارها."},{"@type":"WebSite","@id":`${absoluteUrl("/")}#website`,name:"وب‌ساز",url:absoluteUrl("/")}]};
+  return <><Header /><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/><main>
     <section className="hero hero-revamp"><div className="hero-grid-pattern"></div><div className="container hero-grid">
       <div className="hero-copy"><div className="hero-label"><i></i> شریک دیجیتال کسب‌وکارهای رو‌به‌رشد</div><h1>طراحی وب‌سایت،<br/><span>برای ساختن یک برند ماندگار.</span></h1><p>از شناخت مسئله تا طراحی و توسعه، وب‌سایتی می‌سازیم که هویت کسب‌وکار شما را درست معرفی کند و مسیر ارتباط با مشتری را ساده‌تر سازد.</p><div className="actions"><Link className="btn primary hero-primary" href="/contact">شروع یک پروژه <span>←</span></Link><Link className="btn secondary hero-secondary" href="/portfolio"><i>▶</i> مشاهده نمونه‌کارها</Link></div><div className="hero-proof clean-proof"><div><b>پیشنهاد اجرایی شفاف</b><span>محدوده کار، زمان‌بندی و هزینه پیش از شروع مشخص می‌شود.</span></div><div><b>طراحی متناسب با برند</b><span>ساختار و رابط بر اساس نیاز واقعی پروژه شکل می‌گیرد.</span></div></div></div>
       <div className="hero-visual hero-photo-wrap"><Image className="hero-photo" src="/home-hero-studio.png" alt="فضای حرفه‌ای طراحی و توسعه وب‌سایت روی نمایشگر، لپ‌تاپ و تلفن همراه" fill priority sizes="(max-width: 1000px) 92vw, 52vw"/><div className="visual-top photo-top"><span><i></i> طراحی و توسعه یکپارچه</span><b>از دسکتاپ تا موبایل</b></div><div className="photo-caption"><b>طراحی متناسب با هویت کسب‌وکار</b><span>رابط منسجم، واکنش‌گرا و آماده توسعه</span></div></div>
