@@ -4,6 +4,7 @@ import { Footer, Header, Icon, SectionTitle } from "./components";
 import { faqs, portfolio, services } from "./data";
 import { getCollection } from "../lib/api";
 import { absoluteUrl } from "../lib/seo";
+const serviceRoutes:Record<string,string>={seo:"seo",uiux:"ui-ux",wordpress:"wordpress",custom:"custom-website",company:"corporate-website",shop:"ecommerce-website"};
 
 export default async function Home() {
   const [liveServices,liveFaqs]=await Promise.all([getCollection("services",services),getCollection("faqs",faqs)]);
@@ -17,7 +18,7 @@ export default async function Home() {
 
     <section className="metrics-wrap container"><div className="metrics-panel"><div className="metrics-intro"><span>همکاری روشن و قابل پیگیری</span><h2>نتیجه، مهم‌تر از ظاهر است.</h2><p>مسیر هر پروژه از نیازسنجی تا تحویل، شفاف و متناسب با کسب‌وکار شما پیش می‌رود.</p></div><div className="metrics-list"><article><div><strong style={{fontSize:"18px",letterSpacing:0}}>واقعی</strong></div><b>نمونه‌کارها</b><span>قابل مشاهده و بررسی آنلاین</span></article><article><div><strong style={{fontSize:"18px",letterSpacing:0}}>مستقیم</strong></div><b>ارتباط و پیگیری</b><span>بدون واسطه و اتلاف زمان</span></article><article><div><strong style={{fontSize:"18px",letterSpacing:0}}>واکنش‌گرا</strong></div><b>طراحی صفحات</b><span>مناسب موبایل تا دسکتاپ</span></article><article><div><strong style={{fontSize:"18px",letterSpacing:0}}>شفاف</strong></div><b>محدوده همکاری</b><span>زمان‌بندی و هزینه مشخص</span></article></div></div></section>
 
-    <section className="section container"><SectionTitle kicker="خدمات ما" title="تمامی خدمات طراحی سایت در یکجا" text="از طراحی رابط کاربری تا توسعه اختصاصی، کنار شما هستیم."/><div className="service-grid">{liveServices.map((s)=><article className="service-card" key={s.slug}><Icon value={s.icon}/><h3>{s.title}</h3><p>{s.short}</p><Link href={`/services#${s.slug}`}>مشاهده جزئیات ←</Link></article>)}</div></section>
+    <section className="section container"><SectionTitle kicker="خدمات ما" title="تمامی خدمات طراحی سایت در یکجا" text="از طراحی رابط کاربری تا توسعه اختصاصی، کنار شما هستیم."/><div className="service-grid">{liveServices.map((s)=><article className="service-card" key={s.slug}><Icon value={s.icon}/><h3>{s.title}</h3><p>{s.short}</p><Link href={`/services/${serviceRoutes[s.slug]}`}>جزئیات {s.title} ←</Link></article>)}</div></section>
 
     <section className="section pale"><div className="container split"><div className="feature-visual detail-photo-wrap"><Image className="detail-photo" src="/home-detail-review.png" alt="بررسی دقیق طراحی رابط کاربری روی تبلت و لپ‌تاپ" fill sizes="(max-width: 900px) 92vw, 48vw"/></div><div><SectionTitle align="right" kicker="چرا وب‌ساز؟" title="تفاوت ما در جزئیات است" text="از ساختار محتوا تا رفتار هر بخش در موبایل، تصمیم‌ها را با دقت بررسی می‌کنیم تا خروجی نهایی زیبا، قابل استفاده و قابل نگهداری باشد."/><div className="feature-list">{["طراحی اختصاصی متناسب با برند","سرعت و امنیت بالا","سئوی تکنیکال از روز اول","تجربه کاربری هدفمند","کدنویسی تمیز و مقیاس‌پذیر","پشتیبانی شفاف و متعهدانه"].map((x,i)=><div key={x}><Icon value={["✦","⚡","⌁","◎","</>","♡"][i]}/><span>{x}</span></div>)}</div></div></div></section>
 
