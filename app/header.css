@@ -118,7 +118,9 @@
         bottom: 0;
         right: 0;
         left: auto;
-        width: min(380px, 88vw);
+        /* On phones the drawer should feel like a full-width navigation sheet. */
+        width: 100%;
+        max-width: none;
         height: 100dvh;
         margin: 0;
         padding: 0;
@@ -273,6 +275,8 @@
     .site-header .site-nav {
         direction: rtl;
         text-align: right;
+        /* Keep a small safe area on devices with rounded screen corners. */
+        padding-bottom: env(safe-area-inset-bottom);
     }
     .site-nav .nav-links {
         align-items: stretch;
@@ -294,5 +298,11 @@
     .sidebar-foot .btn {
         justify-content: center;
         text-align: center;
+    }
+}
+
+@media (min-width: 901px) {
+    .site-header .site-nav {
+        width: auto;
     }
 }
