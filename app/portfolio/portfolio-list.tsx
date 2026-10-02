@@ -1,69 +1,139 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import Image from "next/image";
-import { useMemo, useState } from "react";
+import Link from 'next/link';
+import Image from 'next/image';
+import { useMemo, useState } from 'react';
 
 export type PortfolioItem = {
-  slug: string;
-  title: string;
-  category: string;
-  result?: string;
-  description?: string;
-  services?: string[];
-  website_url?: string;
-  cover_url?: string;
+    slug: string;
+    title: string;
+    category: string;
+    result?: string;
+    description?: string;
+    services?: string[];
+    website_url?: string;
+    cover_url?: string;
 };
 
 const categoryGroups = [
-  { label: "همه پروژه‌ها", value: "all" },
-  { label: "فروشگاهی", value: "فروشگاه اینترنتی" },
-  { label: "شرکتی", value: "وب‌سایت شرکتی" },
-  { label: "خدمات آنلاین", value: "online" },
-  { label: "آموزشی", value: "پلتفرم آموزشی" },
+    { label: 'همه پروژه‌ها', value: 'all' },
+    { label: 'فروشگاهی', value: 'فروشگاه اینترنتی' },
+    { label: 'شرکتی', value: 'وب‌سایت شرکتی' },
+    { label: 'خدمات آنلاین', value: 'online' },
+    { label: 'آموزشی', value: 'پلتفرم آموزشی' },
 ];
 
 function belongsTo(item: PortfolioItem, category: string) {
-  if (category === "all") return true;
-  if (category === "online") return ["رزرو خدمات پزشکی", "محصول مالی", "سفارش آنلاین"].includes(item.category);
-  return item.category === category;
+    if (category === 'all') return true;
+    if (category === 'online')
+        return ['رزرو خدمات پزشکی', 'محصول مالی', 'سفارش آنلاین'].includes(
+            item.category,
+        );
+    return item.category === category;
 }
 
 export function PortfolioList({ items }: { items: PortfolioItem[] }) {
-  const [active, setActive] = useState("all");
-  const visible = useMemo(() => items.filter((item) => belongsTo(item, active)), [active, items]);
+    const [active, setActive] = useState('all');
+    const visible = useMemo(
+        () => items.filter((item) => belongsTo(item, active)),
+        [active, items],
+    );
 
-  return (
-    <>
-      <div className="mkt-portfolio-filter" role="group" aria-label="فیلتر نمونه‌کارها">
-        {categoryGroups.map((category) => (
-          <button
-            className={active === category.value ? "active" : ""}
-            key={category.value}
-            type="button"
-            onClick={() => setActive(category.value)}
-          >
-            {category.label}
-          </button>
-        ))}
-      </div>
-
-      <div className="mkt-portfolio-grid">
-        {visible.map((item, index) => (
-          <article className={`mkt-project-card tone-${(index % 4) + 1}`} key={item.slug}>
-            <a className="mkt-project-cover" href={item.website_url || `/portfolio/${item.slug}`} target={item.website_url ? "_blank" : undefined} rel={item.website_url ? "noreferrer" : undefined} aria-label={`مشاهده پروژه ${item.title}`}>
-              {item.cover_url && <Image className="portfolio-site-shot" src={item.cover_url} alt={`نمای وب‌سایت ${item.title}`} fill sizes="(max-width: 900px) 100vw, 50vw" />}
-            </a>
-            <div className="mkt-project-body">
-              <div className="mkt-project-meta"><span>{item.category}</span><small>مطالعه موردی</small></div>
-              <h2>{item.website_url ? <a href={item.website_url} target="_blank" rel="noreferrer">{item.title}</a> : <Link href={`/portfolio/${item.slug}`}>{item.title}</Link>}</h2>
-              <p>{item.description || item.result || "طراحی و توسعه وب‌سایت با تمرکز بر نیازهای اصلی کاربران و اهداف کسب‌وکار."}</p>
-              {item.services && <div className="mkt-project-tags">{item.services.map((service) => <span key={service}>{service}</span>)}</div>}
-              {item.website_url ? <a className="mkt-project-link" href={item.website_url} target="_blank" rel="noreferrer">مشاهده وب‌سایت <b>←</b></a> : <Link className="mkt-project-link" href={`/portfolio/${item.slug}`}>مشاهده جزئیات پروژه <b>←</b></Link>}
+    return (
+        <>
+            <div
+                className="mkt-portfolio-filter"
+                role="group"
+                aria-label="فیلتر نمونه‌کارها"
+            >
+                {categoryGroups.map((category) => (
+                    <button
+                        className={active === category.value ? 'active' : ''}
+                        key={category.value}
+                        type="button"
+                        onClick={() => setActive(category.value)}
+                    >
+                        {category.label}
+                    </button>
+                ))}
             </div>
-          </article>
-        ))}
-      </div>
-    </>
-  );
+
+            <div className="mkt-portfolio-grid">
+                {visible.map((item, index) => (
+                    <article
+                        className={`mkt-project-card tone-${(index % 4) + 1}`}
+                        key={item.slug}
+                    >
+                        <a
+                            className="mkt-project-cover"
+                            href={item.website_url || `/portfolio/${item.slug}`}
+                            target={item.website_url ? '_blank' : undefined}
+                            rel={item.website_url ? 'noreferrer' : undefined}
+                            aria-label={`مشاهده پروژه ${item.title}`}
+                        >
+                            {item.cover_url && (
+                                <Image
+                                    className="portfolio-site-shot"
+                                    src={item.cover_url}
+                                    alt={`نمای وب‌سایت ${item.title}`}
+                                    fill
+                                    sizes="(max-width: 900px) 100vw, 50vw"
+                                />
+                            )}
+                        </a>
+                        <div className="mkt-project-body">
+                            <div className="mkt-project-meta">
+                                <span>{item.category}</span>
+                                <small>مطالعه موردی</small>
+                            </div>
+                            <h2>
+                                {item.website_url ? (
+                                    <a
+                                        href={item.website_url}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        {item.title}
+                                    </a>
+                                ) : (
+                                    <Link href={`/portfolio/${item.slug}`}>
+                                        {item.title}
+                                    </Link>
+                                )}
+                            </h2>
+                            <p>
+                                {item.description ||
+                                    item.result ||
+                                    'طراحی و توسعه وب‌سایت با تمرکز بر نیازهای اصلی کاربران و اهداف کسب‌وکار.'}
+                            </p>
+                            {item.services && (
+                                <div className="mkt-project-tags">
+                                    {item.services.map((service) => (
+                                        <span key={service}>{service}</span>
+                                    ))}
+                                </div>
+                            )}
+                            {item.website_url ? (
+                                <a
+                                    className="mkt-project-link"
+                                    href={item.website_url}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    مشاهده وب‌سایت <b>←</b>
+                                </a>
+                            ) : (
+                                <Link
+                                    className="mkt-project-link"
+                                    href={`/portfolio/${item.slug}`}
+                                >
+                                    مشاهده جزئیات پروژه <b>←</b>
+                                </Link>
+                            )}
+                        </div>
+                    </article>
+                ))}
+            </div>
+        </>
+    );
 }

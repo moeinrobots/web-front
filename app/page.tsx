@@ -1,32 +1,415 @@
-import Link from "next/link";
-import Image from "next/image";
-import { Footer, Header, Icon, SectionTitle } from "./components";
-import { faqs, portfolio, services } from "./data";
-import { getCollection } from "../lib/api";
-import { absoluteUrl } from "../lib/seo";
-const serviceRoutes:Record<string,string>={seo:"seo",uiux:"ui-ux",wordpress:"wordpress",custom:"custom-website",company:"corporate-website",shop:"ecommerce-website"};
+import Link from 'next/link';
+import Image from 'next/image';
+import { Footer, Header, Icon, SectionTitle } from './components';
+import { faqs, portfolio, services } from './data';
+import { getCollection } from '../lib/api';
+import { absoluteUrl } from '../lib/seo';
+const serviceRoutes: Record<string, string> = {
+    seo: 'seo',
+    uiux: 'ui-ux',
+    wordpress: 'wordpress',
+    custom: 'custom-website',
+    company: 'corporate-website',
+    shop: 'ecommerce-website',
+};
 
 export default async function Home() {
-  const [liveServices,liveFaqs]=await Promise.all([getCollection("services",services),getCollection("faqs",faqs)]);
-  const livePortfolio=portfolio;
-  const schema={"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":`${absoluteUrl("/")}#organization`,name:"وب‌ساز",url:absoluteUrl("/"),logo:absoluteUrl("/favicon.svg"),description:"طراحی و توسعه وب‌سایت‌های حرفه‌ای، سریع و هدفمند برای رشد واقعی کسب‌وکارها."},{"@type":"WebSite","@id":`${absoluteUrl("/")}#website`,name:"وب‌ساز",url:absoluteUrl("/")}]};
-  return <><Header /><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/><main>
-    <section className="hero hero-revamp"><div className="hero-grid-pattern"></div><div className="container hero-grid">
-      <div className="hero-copy"><div className="hero-label"><i></i> شریک دیجیتال کسب‌وکارهای رو‌به‌رشد</div><h1>طراحی وب‌سایت،<br/><span>برای ساختن یک برند ماندگار.</span></h1><p>از شناخت مسئله تا طراحی و توسعه، وب‌سایتی می‌سازیم که هویت کسب‌وکار شما را درست معرفی کند و مسیر ارتباط با مشتری را ساده‌تر سازد.</p><div className="actions"><Link className="btn primary hero-primary" href="/contact">شروع یک پروژه <span>←</span></Link><Link className="btn secondary hero-secondary" href="/portfolio"><i>▶</i> مشاهده نمونه‌کارها</Link></div><div className="hero-proof clean-proof"><div><b>پیشنهاد اجرایی شفاف</b><span>محدوده کار، زمان‌بندی و هزینه پیش از شروع مشخص می‌شود.</span></div><div><b>طراحی متناسب با برند</b><span>ساختار و رابط بر اساس نیاز واقعی پروژه شکل می‌گیرد.</span></div></div></div>
-      <div className="hero-visual hero-photo-wrap"><Image className="hero-photo" src="/home-hero-studio.png" alt="فضای حرفه‌ای طراحی و توسعه وب‌سایت روی نمایشگر، لپ‌تاپ و تلفن همراه" fill priority sizes="(max-width: 1000px) 92vw, 52vw"/><div className="visual-top photo-top"><span><i></i> طراحی و توسعه یکپارچه</span><b>از دسکتاپ تا موبایل</b></div><div className="photo-caption"><b>طراحی متناسب با هویت کسب‌وکار</b><span>رابط منسجم، واکنش‌گرا و آماده توسعه</span></div></div>
-    </div><div className="container hero-strip"><span>طراحی هدفمند</span><i></i><span>توسعه استاندارد</span><i></i><span>سئوی تکنیکال</span><i></i><span>پشتیبانی واقعی</span></div></section>
+    const [liveServices, liveFaqs] = await Promise.all([
+        getCollection('services', services),
+        getCollection('faqs', faqs),
+    ]);
+    const livePortfolio = portfolio;
+    const schema = {
+        '@context': 'https://schema.org',
+        '@graph': [
+            {
+                '@type': 'ProfessionalService',
+                '@id': `${absoluteUrl('/')}#organization`,
+                name: 'وب‌ساز',
+                url: absoluteUrl('/'),
+                logo: absoluteUrl('/favicon.svg'),
+                description:
+                    'طراحی و توسعه وب‌سایت‌های حرفه‌ای، سریع و هدفمند برای رشد واقعی کسب‌وکارها.',
+            },
+            {
+                '@type': 'WebSite',
+                '@id': `${absoluteUrl('/')}#website`,
+                name: 'وب‌ساز',
+                url: absoluteUrl('/'),
+            },
+        ],
+    };
+    return (
+        <>
+            <Header />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+            />
+            <main>
+                <section className="hero hero-revamp">
+                    <div className="hero-grid-pattern"></div>
+                    <div className="container hero-grid">
+                        <div className="hero-copy">
+                            <div className="hero-label">
+                                <i></i> شریک دیجیتال کسب‌وکارهای رو‌به‌رشد
+                            </div>
+                            <h1>
+                                طراحی وب‌سایت،
+                                <br />
+                                <span>برای ساختن یک برند ماندگار.</span>
+                            </h1>
+                            <p>
+                                از شناخت مسئله تا طراحی و توسعه، وب‌سایتی
+                                می‌سازیم که هویت کسب‌وکار شما را درست معرفی کند
+                                و مسیر ارتباط با مشتری را ساده‌تر سازد.
+                            </p>
+                            <div className="actions">
+                                <Link
+                                    className="btn primary hero-primary"
+                                    href="/contact"
+                                >
+                                    شروع یک پروژه <span>←</span>
+                                </Link>
+                                <Link
+                                    className="btn secondary hero-secondary"
+                                    href="/portfolio"
+                                >
+                                    <i>▶</i> مشاهده نمونه‌کارها
+                                </Link>
+                            </div>
+                            <div className="hero-proof clean-proof">
+                                <div>
+                                    <b>پیشنهاد اجرایی شفاف</b>
+                                    <span>
+                                        محدوده کار، زمان‌بندی و هزینه پیش از
+                                        شروع مشخص می‌شود.
+                                    </span>
+                                </div>
+                                <div>
+                                    <b>طراحی متناسب با برند</b>
+                                    <span>
+                                        ساختار و رابط بر اساس نیاز واقعی پروژه
+                                        شکل می‌گیرد.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="hero-visual hero-photo-wrap">
+                            <Image
+                                className="hero-photo"
+                                src="/home-hero-studio.png"
+                                alt="فضای حرفه‌ای طراحی و توسعه وب‌سایت روی نمایشگر، لپ‌تاپ و تلفن همراه"
+                                fill
+                                priority
+                                sizes="(max-width: 1000px) 92vw, 52vw"
+                            />
+                            <div className="visual-top photo-top">
+                                <span>
+                                    <i></i> طراحی و توسعه یکپارچه
+                                </span>
+                                <b>از دسکتاپ تا موبایل</b>
+                            </div>
+                            <div className="photo-caption">
+                                <b>طراحی متناسب با هویت کسب‌وکار</b>
+                                <span>رابط منسجم، واکنش‌گرا و آماده توسعه</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="container hero-strip">
+                        <span>طراحی هدفمند</span>
+                        <i></i>
+                        <span>توسعه استاندارد</span>
+                        <i></i>
+                        <span>سئوی تکنیکال</span>
+                        <i></i>
+                        <span>پشتیبانی واقعی</span>
+                    </div>
+                </section>
 
-    <section className="metrics-wrap container"><div className="metrics-panel"><div className="metrics-intro"><span>همکاری روشن و قابل پیگیری</span><h2>نتیجه، مهم‌تر از ظاهر است.</h2><p>مسیر هر پروژه از نیازسنجی تا تحویل، شفاف و متناسب با کسب‌وکار شما پیش می‌رود.</p></div><div className="metrics-list"><article><div><strong style={{fontSize:"18px",letterSpacing:0}}>واقعی</strong></div><b>نمونه‌کارها</b><span>قابل مشاهده و بررسی آنلاین</span></article><article><div><strong style={{fontSize:"18px",letterSpacing:0}}>مستقیم</strong></div><b>ارتباط و پیگیری</b><span>بدون واسطه و اتلاف زمان</span></article><article><div><strong style={{fontSize:"18px",letterSpacing:0}}>واکنش‌گرا</strong></div><b>طراحی صفحات</b><span>مناسب موبایل تا دسکتاپ</span></article><article><div><strong style={{fontSize:"18px",letterSpacing:0}}>شفاف</strong></div><b>محدوده همکاری</b><span>زمان‌بندی و هزینه مشخص</span></article></div></div></section>
+                <section className="metrics-wrap container">
+                    <div className="metrics-panel">
+                        <div className="metrics-intro">
+                            <span>همکاری روشن و قابل پیگیری</span>
+                            <h2>نتیجه، مهم‌تر از ظاهر است.</h2>
+                            <p>
+                                مسیر هر پروژه از نیازسنجی تا تحویل، شفاف و
+                                متناسب با کسب‌وکار شما پیش می‌رود.
+                            </p>
+                        </div>
+                        <div className="metrics-list">
+                            <article>
+                                <div>
+                                    <strong
+                                        style={{
+                                            fontSize: '18px',
+                                            letterSpacing: 0,
+                                        }}
+                                    >
+                                        واقعی
+                                    </strong>
+                                </div>
+                                <b>نمونه‌کارها</b>
+                                <span>قابل مشاهده و بررسی آنلاین</span>
+                            </article>
+                            <article>
+                                <div>
+                                    <strong
+                                        style={{
+                                            fontSize: '18px',
+                                            letterSpacing: 0,
+                                        }}
+                                    >
+                                        مستقیم
+                                    </strong>
+                                </div>
+                                <b>ارتباط و پیگیری</b>
+                                <span>بدون واسطه و اتلاف زمان</span>
+                            </article>
+                            <article>
+                                <div>
+                                    <strong
+                                        style={{
+                                            fontSize: '18px',
+                                            letterSpacing: 0,
+                                        }}
+                                    >
+                                        واکنش‌گرا
+                                    </strong>
+                                </div>
+                                <b>طراحی صفحات</b>
+                                <span>مناسب موبایل تا دسکتاپ</span>
+                            </article>
+                            <article>
+                                <div>
+                                    <strong
+                                        style={{
+                                            fontSize: '18px',
+                                            letterSpacing: 0,
+                                        }}
+                                    >
+                                        شفاف
+                                    </strong>
+                                </div>
+                                <b>محدوده همکاری</b>
+                                <span>زمان‌بندی و هزینه مشخص</span>
+                            </article>
+                        </div>
+                    </div>
+                </section>
 
-    <section className="section container"><SectionTitle kicker="خدمات ما" title="تمامی خدمات طراحی سایت در یکجا" text="از طراحی رابط کاربری تا توسعه اختصاصی، کنار شما هستیم."/><div className="service-grid">{liveServices.map((s)=><article className="service-card" key={s.slug}><Icon value={s.icon}/><h3>{s.title}</h3><p>{s.short}</p><Link href={`/services/${serviceRoutes[s.slug]}`}>جزئیات {s.title} ←</Link></article>)}</div></section>
+                <section className="section container">
+                    <SectionTitle
+                        kicker="خدمات ما"
+                        title="تمامی خدمات طراحی سایت در یکجا"
+                        text="از طراحی رابط کاربری تا توسعه اختصاصی، کنار شما هستیم."
+                    />
+                    <div className="service-grid">
+                        {liveServices.map((s) => (
+                            <article className="service-card" key={s.slug}>
+                                <Icon value={s.icon} />
+                                <h3>{s.title}</h3>
+                                <p>{s.short}</p>
+                                <Link
+                                    href={`/services/${serviceRoutes[s.slug]}`}
+                                >
+                                    جزئیات {s.title} ←
+                                </Link>
+                            </article>
+                        ))}
+                    </div>
+                </section>
 
-    <section className="section pale"><div className="container split"><div className="feature-visual detail-photo-wrap"><Image className="detail-photo" src="/home-detail-review.png" alt="بررسی دقیق طراحی رابط کاربری روی تبلت و لپ‌تاپ" fill sizes="(max-width: 900px) 92vw, 48vw"/></div><div><SectionTitle align="right" kicker="چرا وب‌ساز؟" title="تفاوت ما در جزئیات است" text="از ساختار محتوا تا رفتار هر بخش در موبایل، تصمیم‌ها را با دقت بررسی می‌کنیم تا خروجی نهایی زیبا، قابل استفاده و قابل نگهداری باشد."/><div className="feature-list">{["طراحی اختصاصی متناسب با برند","سرعت و امنیت بالا","سئوی تکنیکال از روز اول","تجربه کاربری هدفمند","کدنویسی تمیز و مقیاس‌پذیر","پشتیبانی شفاف و متعهدانه"].map((x,i)=><div key={x}><Icon value={["✦","⚡","⌁","◎","</>","♡"][i]}/><span>{x}</span></div>)}</div></div></div></section>
+                <section className="section pale">
+                    <div className="container split">
+                        <div className="feature-visual detail-photo-wrap">
+                            <Image
+                                className="detail-photo"
+                                src="/home-detail-review.png"
+                                alt="بررسی دقیق طراحی رابط کاربری روی تبلت و لپ‌تاپ"
+                                fill
+                                sizes="(max-width: 900px) 92vw, 48vw"
+                            />
+                        </div>
+                        <div>
+                            <SectionTitle
+                                align="right"
+                                kicker="چرا وب‌ساز؟"
+                                title="تفاوت ما در جزئیات است"
+                                text="از ساختار محتوا تا رفتار هر بخش در موبایل، تصمیم‌ها را با دقت بررسی می‌کنیم تا خروجی نهایی زیبا، قابل استفاده و قابل نگهداری باشد."
+                            />
+                            <div className="feature-list">
+                                {[
+                                    'طراحی اختصاصی متناسب با برند',
+                                    'سرعت و امنیت بالا',
+                                    'سئوی تکنیکال از روز اول',
+                                    'تجربه کاربری هدفمند',
+                                    'کدنویسی تمیز و مقیاس‌پذیر',
+                                    'پشتیبانی شفاف و متعهدانه',
+                                ].map((x, i) => (
+                                    <div key={x}>
+                                        <Icon
+                                            value={
+                                                [
+                                                    '✦',
+                                                    '⚡',
+                                                    '⌁',
+                                                    '◎',
+                                                    '</>',
+                                                    '♡',
+                                                ][i]
+                                            }
+                                        />
+                                        <span>{x}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-    <section className="section container"><SectionTitle kicker="فرآیند کار" title="از ایده تا موفقیت، در ۵ مرحله" text="هر مرحله شفاف، قابل پیگیری و با تأیید شما انجام می‌شود."/><div className="steps">{["مشاوره و تحلیل","طراحی وایرفریم","طراحی UI/UX","توسعه و پیاده‌سازی","تحویل و پشتیبانی"].map((x,i)=><div key={x}><span>{i+1}</span><b>{x}</b><small>{["شناخت اهداف و مخاطبان","ساخت مسیر و ساختار صفحات","خلق ظاهر اختصاصی برند","کدنویسی سریع و استاندارد","آموزش، انتشار و همراهی"][i]}</small></div>)}</div></section>
+                <section className="section container">
+                    <SectionTitle
+                        kicker="فرآیند کار"
+                        title="از ایده تا موفقیت، در ۵ مرحله"
+                        text="هر مرحله شفاف، قابل پیگیری و با تأیید شما انجام می‌شود."
+                    />
+                    <div className="steps">
+                        {[
+                            'مشاوره و تحلیل',
+                            'طراحی وایرفریم',
+                            'طراحی UI/UX',
+                            'توسعه و پیاده‌سازی',
+                            'تحویل و پشتیبانی',
+                        ].map((x, i) => (
+                            <div key={x}>
+                                <span>{i + 1}</span>
+                                <b>{x}</b>
+                                <small>
+                                    {
+                                        [
+                                            'شناخت اهداف و مخاطبان',
+                                            'ساخت مسیر و ساختار صفحات',
+                                            'خلق ظاهر اختصاصی برند',
+                                            'کدنویسی سریع و استاندارد',
+                                            'آموزش، انتشار و همراهی',
+                                        ][i]
+                                    }
+                                </small>
+                            </div>
+                        ))}
+                    </div>
+                </section>
 
-    <section className="section work-section projects-polished"><div className="container"><div className="projects-heading"><SectionTitle align="right" kicker="نمونه‌کارهای منتخب" title="پروژه‌هایی که نتیجه ساخته‌اند" text="هر پروژه ترکیبی از استراتژی، طراحی دقیق و اجرای استاندارد است."/><Link className="projects-all" href="/portfolio">مشاهده همه پروژه‌ها <span>←</span></Link></div><div className="project-showcase">{livePortfolio.slice(0,4).map((p,i)=>{const href=p.website_url||`/portfolio/${p.slug}`;return <a href={href} target={p.website_url?"_blank":undefined} rel={p.website_url?"noreferrer":undefined} className={`project-tile project-${i+1} ${i===0?"featured":""}`} key={p.slug}><div className="project-preview"><Image className="portfolio-site-shot" src={p.cover_url} alt={`نمای وب‌سایت ${p.title}`} fill sizes={i===0?"(max-width: 900px) 100vw, 42vw":"(max-width: 600px) 100vw, 30vw"}/></div><div className="project-caption"><div><span>۰{i+1}</span><h3>{p.title}</h3><p>{p.category}</p></div><strong>{p.result||"طراحی و توسعه اختصاصی"}</strong><i>←</i></div></a>})}</div></div></section>
+                <section className="section work-section projects-polished">
+                    <div className="container">
+                        <div className="projects-heading">
+                            <SectionTitle
+                                align="right"
+                                kicker="نمونه‌کارهای منتخب"
+                                title="پروژه‌هایی که نتیجه ساخته‌اند"
+                                text="هر پروژه ترکیبی از استراتژی، طراحی دقیق و اجرای استاندارد است."
+                            />
+                            <Link className="projects-all" href="/portfolio">
+                                مشاهده همه پروژه‌ها <span>←</span>
+                            </Link>
+                        </div>
+                        <div className="project-showcase">
+                            {livePortfolio.slice(0, 4).map((p, i) => {
+                                const href =
+                                    p.website_url || `/portfolio/${p.slug}`;
+                                return (
+                                    <a
+                                        href={href}
+                                        target={
+                                            p.website_url ? '_blank' : undefined
+                                        }
+                                        rel={
+                                            p.website_url
+                                                ? 'noreferrer'
+                                                : undefined
+                                        }
+                                        className={`project-tile project-${i + 1} ${i === 0 ? 'featured' : ''}`}
+                                        key={p.slug}
+                                    >
+                                        <div className="project-preview">
+                                            <Image
+                                                className="portfolio-site-shot"
+                                                src={p.cover_url}
+                                                alt={`نمای وب‌سایت ${p.title}`}
+                                                fill
+                                                sizes={
+                                                    i === 0
+                                                        ? '(max-width: 900px) 100vw, 42vw'
+                                                        : '(max-width: 600px) 100vw, 30vw'
+                                                }
+                                            />
+                                        </div>
+                                        <div className="project-caption">
+                                            <div>
+                                                <span>۰{i + 1}</span>
+                                                <h3>{p.title}</h3>
+                                                <p>{p.category}</p>
+                                            </div>
+                                            <strong>
+                                                {p.result ||
+                                                    'طراحی و توسعه اختصاصی'}
+                                            </strong>
+                                            <i>←</i>
+                                        </div>
+                                    </a>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </section>
 
-    <section className="section faq-wrap"><div className="container faq-grid"><div><span className="eyebrow">سؤالات متداول</span><h2>پاسخ به پرسش‌های شما</h2><p>اگر پاسخ پرسش خود را پیدا نکردید، با ما تماس بگیرید.</p><Link className="text-link" href="/contact">گفت‌وگو با مشاور ←</Link></div><div>{liveFaqs.slice(0,5).map((f,i)=><details key={f.q} open={i===0}><summary>{f.q}<span>+</span></summary><p>{f.a}</p></details>)}</div></div></section>
-    <section className="cta"><div className="container"><span>شروع یک همکاری موفق</span><h2>آماده‌اید کسب‌وکارتان را حرفه‌ای‌تر کنید؟</h2><p>اولین قدم را با یک جلسه مشاوره رایگان و بدون تعهد بردارید.</p><div className="actions"><Link className="btn light" href="/contact">درخواست مشاوره رایگان</Link><a className="btn ghost" href="tel:+989157364942">۰۹۱۵۷۳۶۴۹۴۲</a></div></div></section>
-  </main><Footer /></>;
+                <section className="section faq-wrap">
+                    <div className="container faq-grid">
+                        <div>
+                            <span className="eyebrow">سؤالات متداول</span>
+                            <h2>پاسخ به پرسش‌های شما</h2>
+                            <p>
+                                اگر پاسخ پرسش خود را پیدا نکردید، با ما تماس
+                                بگیرید.
+                            </p>
+                            <Link className="text-link" href="/contact">
+                                گفت‌وگو با مشاور ←
+                            </Link>
+                        </div>
+                        <div>
+                            {liveFaqs.slice(0, 5).map((f, i) => (
+                                <details key={f.q} open={i === 0}>
+                                    <summary>
+                                        {f.q}
+                                        <span>+</span>
+                                    </summary>
+                                    <p>{f.a}</p>
+                                </details>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+                <section className="cta">
+                    <div className="container">
+                        <span>شروع یک همکاری موفق</span>
+                        <h2>آماده‌اید کسب‌وکارتان را حرفه‌ای‌تر کنید؟</h2>
+                        <p>
+                            اولین قدم را با یک جلسه مشاوره رایگان و بدون تعهد
+                            بردارید.
+                        </p>
+                        <div className="actions">
+                            <Link className="btn light" href="/contact">
+                                درخواست مشاوره رایگان
+                            </Link>
+                            <a className="btn ghost" href="tel:+989157364942">
+                                ۰۹۱۵۷۳۶۴۹۴۲
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <Footer />
+        </>
+    );
 }
