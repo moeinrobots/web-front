@@ -3,8 +3,10 @@ import Link from 'next/link';
 import { Footer, Header, PageHero } from '../components';
 import { posts as fallbackPosts } from '../data';
 import { getCollection } from '../../lib/api';
+import { absoluteUrl } from '../../lib/seo';
 
 export const metadata: Metadata = {
+    alternates: { canonical: absoluteUrl('/blog') },
     title: 'مجله وب‌ساز',
     description:
         'مقاله‌های کاربردی درباره طراحی سایت، تجربه کاربری، سئو و مدیریت پروژه‌های دیجیتال.',

@@ -133,14 +133,14 @@
     grid-row: auto;
 }
 .project-preview {
-    height: 190px;
+    height: 250px;
     border-radius: 12px;
     overflow: hidden;
     background: linear-gradient(145deg, #dfe8ff, #b9cbff);
     padding: 10px;
 }
 .featured .project-preview {
-    height: 190px;
+    height: 250px;
     background: linear-gradient(145deg, #e7ebff, #b9c8ff);
 }
 .project-2 .project-preview {
@@ -343,7 +343,7 @@
     }
     .featured .project-preview,
     .project-preview {
-        height: 270px;
+        height: 300px;
     }
     .project-caption > strong {
         display: none;

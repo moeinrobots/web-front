@@ -51,12 +51,13 @@ export function Header() {
                 ></label>
                 <nav
                     className="site-nav"
+                    data-sidebar="sidebar"
                     onClick={(e) => {
                         if ((e.target as HTMLElement).closest('a'))
                             setMenuOpen(false);
                     }}
                 >
-                    <div className="sidebar-head">
+                    <div className="sidebar-head" data-sidebar="header">
                         <Link className="brand site-brand" href="/">
                             <BrandFavicon />
                             <span>
@@ -71,7 +72,7 @@ export function Header() {
                             ×
                         </label>
                     </div>
-                    <div className="nav-links">
+                    <div className="nav-links" data-sidebar="menu">
                         <Link href="/">صفحه اصلی</Link>
                         <Link href="/services">خدمات</Link>
                         <Link href="/portfolio">نمونه‌کارها</Link>
@@ -80,7 +81,7 @@ export function Header() {
                         <Link href="/blog">وبلاگ</Link>
                         <Link href="/contact">تماس با ما</Link>
                     </div>
-                    <div className="sidebar-foot">
+                    <div className="sidebar-foot" data-sidebar="footer">
                         <span>برای شروع پروژه آماده‌اید؟</span>
                         <Link className="btn primary" href="/contact">
                             مشاوره رایگان <b>←</b>
