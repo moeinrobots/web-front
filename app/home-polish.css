@@ -280,6 +280,125 @@
 }
 .featured .project-caption { padding-top: 14px; }
 .featured .project-caption h3 { font-size: 12px; }
+.projects-polished {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 8% 18%, rgba(70, 103, 255, 0.09), transparent 26%),
+        linear-gradient(180deg, #f7f9ff 0, #fff 100%);
+}
+.projects-polished::before {
+    content: '';
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    left: -130px;
+    bottom: -120px;
+    border: 1px solid rgba(49, 87, 246, 0.1);
+    border-radius: 50%;
+}
+.projects-polished .container {
+    position: relative;
+}
+.projects-polished .project-showcase {
+    grid-template-columns: minmax(0, 1.18fr) minmax(330px, 0.82fr);
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+.projects-polished .project-tile {
+    display: grid;
+    grid-template-columns: minmax(170px, 43%) minmax(0, 1fr);
+    padding: 0;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(24, 48, 100, 0.055);
+}
+.projects-polished .project-tile.featured {
+    grid-row: 1 / 4;
+    display: flex;
+}
+.projects-polished .project-preview {
+    position: relative;
+    display: block;
+    height: 100%;
+    min-height: 170px;
+    padding: 0;
+    border-radius: 0;
+}
+.projects-polished .featured .project-preview {
+    min-height: 470px;
+}
+.project-index {
+    position: absolute;
+    z-index: 2;
+    top: 14px;
+    right: 14px;
+    padding: 7px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 30px;
+    background: rgba(7, 20, 47, 0.72);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font-size: 8px;
+    font-weight: 800;
+}
+.projects-polished .project-caption {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 12px;
+    padding: 22px;
+}
+.projects-polished .project-meta {
+    display: block;
+}
+.projects-polished .project-caption h3 {
+    margin: 4px 0 0;
+    font-size: 18px;
+    line-height: 1.55;
+}
+.projects-polished .project-caption p {
+    margin: 0;
+    color: #3157f6;
+    font-size: 9px;
+    font-weight: 800;
+}
+.projects-polished .project-caption > strong {
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #69758c;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.9;
+    white-space: normal;
+}
+.project-actions {
+    width: 100%;
+    display: flex !important;
+    grid-template-columns: none !important;
+    align-items: center;
+    gap: 13px !important;
+    margin-top: auto;
+}
+.project-actions a {
+    color: #3157f6;
+    font-size: 9px;
+    font-weight: 900;
+}
+.project-actions a:last-child:not(:first-child) {
+    margin-right: auto;
+    color: #7b879b;
+    font-weight: 600;
+}
+.projects-polished .featured .project-caption {
+    padding: 26px;
+}
+.projects-polished .featured .project-caption h3 {
+    font-size: 23px;
+}
 @media (max-width: 900px) {
     .impact {
         margin-top: 20px;
@@ -309,7 +428,19 @@
         margin-top: 8px;
         gap: 24px;
     }
-    .project-showcase { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .projects-polished .project-showcase {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: auto;
+    }
+    .projects-polished .project-tile,
+    .projects-polished .project-tile.featured {
+        grid-row: auto;
+        display: flex;
+    }
+    .projects-polished .project-preview,
+    .projects-polished .featured .project-preview {
+        min-height: 270px;
+    }
 }
 @media (max-width: 600px) {
     .impact-stats {
@@ -341,11 +472,26 @@
     .project-showcase {
         grid-template-columns: 1fr;
     }
-    .featured .project-preview,
-    .project-preview {
-        height: 300px;
+    .projects-polished .project-showcase {
+        grid-template-columns: 1fr;
     }
-    .project-caption > strong {
-        display: none;
+    .projects-polished .project-preview,
+    .projects-polished .featured .project-preview {
+        height: 270px;
+        min-height: 270px;
+    }
+    .projects-polished .project-caption > strong {
+        display: block;
+    }
+    .projects-polished .project-caption,
+    .projects-polished .featured .project-caption {
+        padding: 20px;
+    }
+    .projects-polished .featured .project-caption h3,
+    .projects-polished .project-caption h3 {
+        font-size: 18px;
+    }
+    .project-actions {
+        flex-wrap: wrap;
     }
 }

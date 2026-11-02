@@ -16,27 +16,17 @@ const BrandFavicon = () => (
 export function Icon({ value }: { value: string }) {
     return <span className="icon">{value}</span>;
 }
-export function PhoneReveal({
+export function ContactCall({
     className = '',
     label = 'تماس جهت مشاوره',
 }: {
     className?: string;
     label?: string;
 }) {
-    const [revealed, setRevealed] = useState(false);
-    return revealed ? (
-        <a className={className} href="tel:+989157364942" dir="ltr">
-            ۰۹۱۵۷۳۶۴۹۴۲
-        </a>
-    ) : (
-        <button
-            type="button"
-            className={`${className} phone-reveal`}
-            onClick={() => setRevealed(true)}
-            aria-expanded="false"
-        >
+    return (
+        <a className={`${className} contact-call`} href="tel:+989157364942">
             {label}
-        </button>
+        </a>
     );
 }
 export function Header() {
@@ -124,7 +114,7 @@ export function Header() {
                         <Link className="btn primary" href="/contact">
                             مشاوره رایگان <b>←</b>
                         </Link>
-                        <PhoneReveal label="تماس جهت مشاوره" />
+                        <ContactCall label="تماس جهت مشاوره" />
                         <a
                             href="https://t.me/WEBSAZ_ADMIN"
                             target="_blank"
@@ -176,7 +166,7 @@ export function Footer() {
                 </div>
                 <div>
                     <b>ارتباط با ما</b>
-                    <PhoneReveal label="تماس جهت مشاوره" />
+                    <ContactCall label="تماس جهت مشاوره" />
                     <a
                         href="https://t.me/WEBSAZ_ADMIN"
                         target="_blank"

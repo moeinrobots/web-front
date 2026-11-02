@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Footer, Header, Icon, PageHero, PhoneReveal, SectionTitle } from '../components';
+import { ContactCall, Footer, Header, Icon, PageHero, SectionTitle } from '../components';
 import { faqs, portfolio, services } from '../data';
 import { ContactForm } from '../contact-form';
 import type { Metadata } from 'next';
@@ -318,7 +318,7 @@ function Contact() {
                     <Icon value="☎" />
                     <span>
                         تلفن تماس
-                        <PhoneReveal label="تماس جهت مشاوره" />
+                        <ContactCall label="تماس جهت مشاوره" />
                     </span>
                 </div>
                 <div>

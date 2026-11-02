@@ -1,5 +1,5 @@
 import { ContactForm } from '../contact-form';
-import { Footer, Header, PageHero, PhoneReveal } from '../components';
+import { ContactCall, Footer, Header, PageHero } from '../components';
 import { pageMetadata } from '../../lib/seo';
 
 export const metadata = pageMetadata(
@@ -34,7 +34,7 @@ export default function ContactPage() {
                                 </p>
                             </div>
 
-                            <PhoneReveal
+                            <ContactCall
                                 className="mkt-contact-method"
                                 label="تماس جهت مشاوره"
                             />

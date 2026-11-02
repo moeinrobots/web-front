@@ -335,12 +335,12 @@
     padding: 15px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.09);
 }
-.mkt-contact-method.phone-reveal {
+.mkt-contact-method.contact-call {
     width: 100%;
     color: #fff;
     text-align: right;
 }
-.mkt-contact-method.phone-reveal::before {
+.mkt-contact-method.contact-call::before {
     content: '☎';
     width: 39px;
     height: 39px;

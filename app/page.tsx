@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Footer, Header, Icon, PhoneReveal, SectionTitle } from './components';
+import { ContactCall, Footer, Header, Icon, SectionTitle } from './components';
 import { faqs, portfolio, services } from './data';
 import { getCollection } from '../lib/api';
 import { absoluteUrl, jsonLd } from '../lib/seo';
@@ -316,23 +316,16 @@ export default async function Home() {
                         </div>
                         <div className="project-showcase">
                             {livePortfolio.slice(0, 4).map((p, i) => {
-                                const href =
-                                    p.website_url || `/portfolio/${p.slug}`;
                                 return (
-                                    <a
-                                        href={href}
-                                        target={
-                                            p.website_url ? '_blank' : undefined
-                                        }
-                                        rel={
-                                            p.website_url
-                                                ? 'noreferrer'
-                                                : undefined
-                                        }
+                                    <article
                                         className={`project-tile project-${i + 1} ${i === 0 ? 'featured' : ''}`}
                                         key={p.slug}
                                     >
-                                        <div className="project-preview">
+                                        <Link
+                                            className="project-preview"
+                                            href={`/portfolio/${p.slug}`}
+                                            aria-label={`مشاهده جزئیات پروژه ${p.title}`}
+                                        >
                                             <Image
                                                 className="portfolio-site-shot"
                                                 src={p.cover_url}
@@ -341,23 +334,42 @@ export default async function Home() {
                                                 sizes={
                                                     i === 0
                                                         ? '(max-width: 900px) 100vw, 42vw'
-                                                        : '(max-width: 600px) 100vw, 30vw'
+                                                    : '(max-width: 600px) 100vw, 30vw'
                                                 }
                                             />
-                                        </div>
+                                            <span className="project-index">
+                                                پروژه منتخب · ۰{i + 1}
+                                            </span>
+                                        </Link>
                                         <div className="project-caption">
-                                            <div>
-                                                <span>۰{i + 1}</span>
-                                                <h3>{p.title}</h3>
+                                            <div className="project-meta">
                                                 <p>{p.category}</p>
+                                                <h3>
+                                                    <Link href={`/portfolio/${p.slug}`}>
+                                                        {p.title}
+                                                    </Link>
+                                                </h3>
                                             </div>
                                             <strong>
                                                 {p.result ||
                                                     'طراحی و توسعه اختصاصی'}
                                             </strong>
-                                            <i>←</i>
+                                            <div className="project-actions">
+                                                <Link href={`/portfolio/${p.slug}`}>
+                                                    مطالعه پروژه <span>←</span>
+                                                </Link>
+                                                {p.website_url && (
+                                                    <a
+                                                        href={p.website_url}
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                    >
+                                                        مشاهده سایت زنده ↗
+                                                    </a>
+                                                )}
+                                            </div>
                                         </div>
-                                    </a>
+                                    </article>
                                 );
                             })}
                         </div>
@@ -402,7 +414,7 @@ export default async function Home() {
                             <Link className="btn light" href="/contact">
                                 درخواست مشاوره رایگان
                             </Link>
-                            <PhoneReveal
+                            <ContactCall
                                 className="btn ghost"
                                 label="تماس جهت مشاوره"
                             />
