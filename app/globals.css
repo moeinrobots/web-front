@@ -103,8 +103,7 @@ select {
 .nav-cta {
     height: 42px;
 }
-.menu,
-#nav-toggle {
+.menu {
     display: none;
 }
 .hero {
@@ -992,9 +991,6 @@ footer {
     }
     .nav-cta {
         display: none;
-    }
-    #nav-toggle:checked ~ nav {
-        display: flex;
     }
     .hero-grid,
     .split,

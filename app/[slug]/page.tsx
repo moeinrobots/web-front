@@ -318,7 +318,7 @@ function Contact() {
                     <Icon value="☎" />
                     <span>
                         تلفن تماس
-                        <PhoneReveal label="نمایش شماره تماس" />
+                        <PhoneReveal label="تماس جهت مشاوره" />
                     </span>
                 </div>
                 <div>

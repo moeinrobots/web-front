@@ -36,7 +36,7 @@ export default function ContactPage() {
 
                             <PhoneReveal
                                 className="mkt-contact-method"
-                                label="نمایش شماره تماس"
+                                label="تماس جهت مشاوره"
                             />
                             <a
                                 className="mkt-contact-method"

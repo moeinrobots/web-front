@@ -404,7 +404,7 @@ export default async function Home() {
                             </Link>
                             <PhoneReveal
                                 className="btn ghost"
-                                label="نمایش شماره تماس"
+                                label="تماس جهت مشاوره"
                             />
                         </div>
                     </div>

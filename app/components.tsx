@@ -18,7 +18,7 @@ export function Icon({ value }: { value: string }) {
 }
 export function PhoneReveal({
     className = '',
-    label = 'نمایش شماره تماس',
+    label = 'تماس جهت مشاوره',
 }: {
     className?: string;
     label?: string;
@@ -43,6 +43,19 @@ export function Header() {
     const pathname = usePathname();
     const [menuOpen, setMenuOpen] = useState(false);
     useEffect(() => setMenuOpen(false), [pathname]);
+    useEffect(() => {
+        if (!menuOpen) return;
+        const closeOnEscape = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') setMenuOpen(false);
+        };
+        document.addEventListener('keydown', closeOnEscape);
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.removeEventListener('keydown', closeOnEscape);
+            document.body.style.overflow = previousOverflow;
+        };
+    }, [menuOpen]);
     return (
         <header className="header site-header">
             <div className="container nav site-nav-wrap">
@@ -52,29 +65,30 @@ export function Header() {
                         وب‌ساز<small>طراحی برای رشد</small>
                     </span>
                 </Link>
-                <input
-                    id="nav-toggle"
-                    type="checkbox"
-                    checked={menuOpen}
-                    onChange={(e) => setMenuOpen(e.target.checked)}
-                />
-                <label
-                    htmlFor="nav-toggle"
+                <button
+                    type="button"
                     className="menu sidebar-open"
                     aria-label="بازکردن منو"
+                    aria-expanded={menuOpen}
+                    aria-controls="mobile-navigation"
+                    onClick={() => setMenuOpen(true)}
                 >
                     <span></span>
                     <span></span>
                     <span></span>
-                </label>
-                <label
-                    htmlFor="nav-toggle"
-                    className="sidebar-overlay"
+                </button>
+                <button
+                    type="button"
+                    className={`sidebar-overlay ${menuOpen ? 'is-open' : ''}`}
                     aria-label="بستن منو"
-                ></label>
+                    tabIndex={menuOpen ? 0 : -1}
+                    onClick={() => setMenuOpen(false)}
+                />
                 <nav
-                    className="site-nav"
+                    id="mobile-navigation"
+                    className={`site-nav ${menuOpen ? 'is-open' : ''}`}
                     data-sidebar="sidebar"
+                    aria-label="منوی اصلی"
                     onClick={(e) => {
                         if ((e.target as HTMLElement).closest('a'))
                             setMenuOpen(false);
@@ -87,13 +101,14 @@ export function Header() {
                                 وب‌ساز<small>طراحی برای رشد</small>
                             </span>
                         </Link>
-                        <label
-                            htmlFor="nav-toggle"
+                        <button
+                            type="button"
                             className="sidebar-close"
                             aria-label="بستن منو"
+                            onClick={() => setMenuOpen(false)}
                         >
                             ×
-                        </label>
+                        </button>
                     </div>
                     <div className="nav-links" data-sidebar="menu">
                         <Link href="/">صفحه اصلی</Link>
@@ -109,7 +124,7 @@ export function Header() {
                         <Link className="btn primary" href="/contact">
                             مشاوره رایگان <b>←</b>
                         </Link>
-                        <PhoneReveal label="نمایش شماره تماس" />
+                        <PhoneReveal label="تماس جهت مشاوره" />
                         <a
                             href="https://t.me/WEBSAZ_ADMIN"
                             target="_blank"
@@ -161,7 +176,7 @@ export function Footer() {
                 </div>
                 <div>
                     <b>ارتباط با ما</b>
-                    <PhoneReveal label="نمایش شماره تماس" />
+                    <PhoneReveal label="تماس جهت مشاوره" />
                     <a
                         href="https://t.me/WEBSAZ_ADMIN"
                         target="_blank"
