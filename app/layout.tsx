@@ -30,8 +30,8 @@ export const metadata: Metadata = {
         images: [
             {
                 url: absoluteUrl('/og.png'),
-                width: 1536,
-                height: 1024,
+                width: 1672,
+                height: 941,
                 alt: 'وب‌ساز؛ طراحی سایت حرفه‌ای',
             },
         ],

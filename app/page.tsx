@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Footer, Header, Icon, SectionTitle } from './components';
 import { faqs, portfolio, services } from './data';
 import { getCollection } from '../lib/api';
-import { absoluteUrl } from '../lib/seo';
+import { absoluteUrl, jsonLd } from '../lib/seo';
 const serviceRoutes: Record<string, string> = {
     seo: 'seo',
     uiux: 'ui-ux',
@@ -44,7 +44,7 @@ export default async function Home() {
             <Header />
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+                dangerouslySetInnerHTML={{ __html: jsonLd(schema) }}
             />
             <main>
                 <section className="hero hero-revamp">

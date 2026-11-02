@@ -1,16 +1,14 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Footer, Header, PageHero } from '../components';
 import { posts as fallbackPosts } from '../data';
 import { getCollection } from '../../lib/api';
-import { absoluteUrl } from '../../lib/seo';
+import { pageMetadata } from '../../lib/seo';
 
-export const metadata: Metadata = {
-    alternates: { canonical: absoluteUrl('/blog') },
-    title: 'مجله وب‌ساز',
-    description:
-        'مقاله‌های کاربردی درباره طراحی سایت، تجربه کاربری، سئو و مدیریت پروژه‌های دیجیتال.',
-};
+export const metadata = pageMetadata(
+    'مجله وب‌ساز',
+    'مقاله‌های کاربردی درباره طراحی سایت، تجربه کاربری، سئو و مدیریت پروژه‌های دیجیتال.',
+    '/blog',
+);
 export type Post = {
     slug: string;
     title: string;

@@ -9,5 +9,6 @@ export default function robots(): MetadataRoute.Robots {
             disallow: production ? ['/admin', '/api/'] : '/',
         },
         sitemap: absoluteUrl('/sitemap.xml'),
+        host: absoluteUrl('/'),
     };
 }

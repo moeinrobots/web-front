@@ -210,6 +210,7 @@
     min-height: 100vh;
     background: #f5f7fb;
     padding-right: 255px;
+    overflow-x: clip;
 }
 .admin-sidebar {
     position: fixed;
@@ -223,6 +224,10 @@
     padding: 24px 17px;
     display: flex;
     flex-direction: column;
+    height: 100dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    box-shadow: -10px 0 35px rgba(8, 21, 47, 0.08);
 }
 .admin-logo {
     display: flex;
@@ -1038,9 +1043,11 @@
         transform: translateX(110%);
         transition: 0.3s;
         width: min(280px, 86vw);
+        visibility: hidden;
     }
     .menu-open .admin-sidebar {
         transform: translateX(0);
+        visibility: visible;
     }
     .admin-scrim {
         display: block;

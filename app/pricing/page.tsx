@@ -1,12 +1,12 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Footer, Header, PageHero } from '../components';
+import { pageMetadata } from '../../lib/seo';
 
-export const metadata: Metadata = {
-    title: 'تعرفه طراحی سایت',
-    description:
-        'بازه هزینه طراحی سایت شرکتی، فروشگاهی و محصولات اختصاصی، همراه با جزئیات خدمات و نحوه برآورد پروژه.',
-};
+export const metadata = pageMetadata(
+    'تعرفه طراحی سایت',
+    'بازه هزینه طراحی سایت شرکتی، فروشگاهی و محصولات اختصاصی، همراه با جزئیات خدمات و نحوه برآورد پروژه.',
+    '/pricing',
+);
 
 const plans = [
     {

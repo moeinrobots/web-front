@@ -11,6 +11,15 @@ export function absoluteUrl(path = '/') {
         `${siteUrl}/`,
     ).toString();
 }
+export function jsonLd(data: unknown) {
+    return JSON.stringify(data).replace(/</g, '\\u003c');
+}
+function concise(value: string, maxLength: number) {
+    if (value.length <= maxLength) return value;
+    const shortened = value.slice(0, maxLength + 1);
+    const lastSpace = shortened.lastIndexOf(' ');
+    return `${shortened.slice(0, lastSpace > maxLength * 0.65 ? lastSpace : maxLength).trim()}…`;
+}
 export function pageMetadata(
     title: string,
     description: string,
@@ -18,14 +27,16 @@ export function pageMetadata(
     image = '/og.png',
 ): Metadata {
     const url = absoluteUrl(path);
+    const seoTitle = concise(title, 58);
+    const seoDescription = concise(description, 165);
     return {
-        title,
-        description,
+        title: seoTitle,
+        description: seoDescription,
         alternates: { canonical: url },
         robots: { index: true, follow: true },
         openGraph: {
-            title,
-            description,
+            title: seoTitle,
+            description: seoDescription,
             url,
             siteName,
             locale: 'fa_IR',
@@ -33,17 +44,34 @@ export function pageMetadata(
             images: [
                 {
                     url: absoluteUrl(image),
-                    width: 1536,
-                    height: 1024,
-                    alt: title,
+                    width: image === '/og.png' ? 1672 : undefined,
+                    height: image === '/og.png' ? 941 : undefined,
+                    alt: seoTitle,
                 },
             ],
         },
         twitter: {
             card: 'summary_large_image',
-            title,
-            description,
+            title: seoTitle,
+            description: seoDescription,
             images: [absoluteUrl(image)],
+        },
+    };
+}
+export function articleMetadata(
+    title: string,
+    description: string,
+    path: string,
+    publishedTime?: string | null,
+    image = '/og.png',
+): Metadata {
+    const metadata = pageMetadata(title, description, path, image);
+    return {
+        ...metadata,
+        openGraph: {
+            ...metadata.openGraph,
+            type: 'article',
+            publishedTime: publishedTime || undefined,
         },
     };
 }

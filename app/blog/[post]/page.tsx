@@ -5,7 +5,7 @@ import { Footer, Header } from '../../components';
 import { posts } from '../../data';
 import { getItemOrNull } from '../../../lib/api';
 import type { Post } from '../page';
-import { pageMetadata } from '../../../lib/seo';
+import { absoluteUrl, articleMetadata, jsonLd } from '../../../lib/seo';
 
 export async function generateStaticParams() {
     return posts.map((post) => ({ post: post.slug }));
@@ -19,7 +19,13 @@ export async function generateMetadata({
     const fallback = posts.find((item) => item.slug === post);
     const item = await getItemOrNull<Post>('posts', post, fallback);
     return item
-        ? pageMetadata(item.title, item.excerpt, `/blog/${post}`)
+        ? articleMetadata(
+              item.title,
+              item.excerpt,
+              `/blog/${post}`,
+              item.published_at,
+              item.cover_url || '/og.png',
+          )
         : { robots: { index: false, follow: false } };
 }
 
@@ -32,9 +38,41 @@ export default async function PostPage({
     const fallback = posts.find((item) => item.slug === post);
     const item = await getItemOrNull<Post>('posts', post, fallback);
     if (!item) notFound();
+    const url = absoluteUrl(`/blog/${post}`);
+    const schema = {
+        '@context': 'https://schema.org',
+        '@graph': [
+            {
+                '@type': 'Article',
+                headline: item.title,
+                description: item.excerpt,
+                datePublished: item.published_at || undefined,
+                mainEntityOfPage: url,
+                image: absoluteUrl(item.cover_url || '/og.png'),
+                author: { '@type': 'Organization', name: 'وب‌ساز', url: absoluteUrl('/') },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'وب‌ساز',
+                    logo: { '@type': 'ImageObject', url: absoluteUrl('/favicon.svg') },
+                },
+            },
+            {
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'خانه', item: absoluteUrl('/') },
+                    { '@type': 'ListItem', position: 2, name: 'مجله', item: absoluteUrl('/blog') },
+                    { '@type': 'ListItem', position: 3, name: item.title, item: url },
+                ],
+            },
+        ],
+    };
     return (
         <>
             <Header />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: jsonLd(schema) }}
+            />
             <main className="article-page">
                 <header className="article-head">
                     <div className="container">

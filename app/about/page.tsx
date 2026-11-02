@@ -1,14 +1,12 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Footer, Header, PageHero } from '../components';
-import { absoluteUrl } from '../../lib/seo';
+import { pageMetadata } from '../../lib/seo';
 
-export const metadata: Metadata = {
-    alternates: { canonical: absoluteUrl('/about') },
-    title: 'درباره ما',
-    description:
-        'با رویکرد، شیوه همکاری و اصول تیم وب‌ساز در طراحی و توسعه وب‌سایت‌های حرفه‌ای آشنا شوید.',
-};
+export const metadata = pageMetadata(
+    'درباره ما',
+    'با رویکرد، شیوه همکاری و اصول تیم وب‌ساز در طراحی و توسعه وب‌سایت‌های حرفه‌ای آشنا شوید.',
+    '/about',
+);
 
 const principles = [
     {

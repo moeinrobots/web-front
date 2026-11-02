@@ -1,14 +1,12 @@
-import type { Metadata } from 'next';
 import { ContactForm } from '../contact-form';
 import { Footer, Header, PageHero } from '../components';
-import { absoluteUrl } from '../../lib/seo';
+import { pageMetadata } from '../../lib/seo';
 
-export const metadata: Metadata = {
-    alternates: { canonical: absoluteUrl('/contact') },
-    title: 'تماس با ما',
-    description:
-        'برای بررسی پروژه طراحی سایت، بازطراحی، فروشگاه اینترنتی یا خدمات سئو با تیم وب‌ساز در ارتباط باشید.',
-};
+export const metadata = pageMetadata(
+    'تماس با ما',
+    'برای بررسی پروژه طراحی سایت، بازطراحی، فروشگاه اینترنتی یا خدمات سئو با تیم وب‌ساز در ارتباط باشید.',
+    '/contact',
+);
 
 export default function ContactPage() {
     return (

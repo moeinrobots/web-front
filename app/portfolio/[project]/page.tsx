@@ -5,7 +5,7 @@ import { Footer, Header, Icon, PageHero } from '../../components';
 import { portfolio } from '../../data';
 import { getItem } from '../../../lib/api';
 import type { Metadata } from 'next';
-import { pageMetadata } from '../../../lib/seo';
+import { absoluteUrl, jsonLd, pageMetadata } from '../../../lib/seo';
 
 export function generateStaticParams() {
     return portfolio.map(({ slug }) => ({ project: slug }));
@@ -35,9 +35,23 @@ export default async function ProjectPage({
     const fallback = portfolio.find((p) => p.slug === project);
     if (!fallback) notFound();
     const item = await getItem('projects', project, fallback);
+    const url = absoluteUrl(`/portfolio/${project}`);
+    const schema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'خانه', item: absoluteUrl('/') },
+            { '@type': 'ListItem', position: 2, name: 'نمونه‌کارها', item: absoluteUrl('/portfolio') },
+            { '@type': 'ListItem', position: 3, name: item.title, item: url },
+        ],
+    };
     return (
         <>
             <Header />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: jsonLd(schema) }}
+            />
             <main>
                 <PageHero
                     kicker="مطالعه موردی"

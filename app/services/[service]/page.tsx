@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Footer, Header, PageHero } from '../../components';
-import { absoluteUrl, pageMetadata } from '../../../lib/seo';
+import { absoluteUrl, jsonLd, pageMetadata } from '../../../lib/seo';
 import { servicePages, type ServiceSlug } from '../service-data';
 export function generateStaticParams() {
     return Object.keys(servicePages).map((service) => ({ service }));
@@ -80,7 +80,7 @@ export default async function ServicePage({
             <Header />
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+                dangerouslySetInnerHTML={{ __html: jsonLd(schema) }}
             />
             <main>
                 <nav className="container crumb" aria-label="مسیر صفحه">

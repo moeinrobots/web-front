@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
+import { absoluteUrl } from '../../lib/seo';
 export const metadata: Metadata = {
     title: 'پنل مدیریت',
+    alternates: { canonical: absoluteUrl('/admin') },
     robots: {
         index: false,
         follow: false,

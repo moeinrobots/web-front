@@ -1,16 +1,14 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Footer, Header, PageHero } from '../components';
 import { portfolio } from '../data';
 import { PortfolioList, type PortfolioItem } from './portfolio-list';
-import { absoluteUrl } from '../../lib/seo';
+import { pageMetadata } from '../../lib/seo';
 
-export const metadata: Metadata = {
-    alternates: { canonical: absoluteUrl('/portfolio') },
-    title: 'نمونه‌کارها',
-    description:
-        'نمونه پروژه‌های طراحی سایت شرکتی، فروشگاه اینترنتی و محصولات آنلاین، همراه با شرح مسئله و خدمات انجام‌شده.',
-};
+export const metadata = pageMetadata(
+    'نمونه‌کارها',
+    'نمونه پروژه‌های طراحی سایت شرکتی، فروشگاه اینترنتی و محصولات آنلاین، همراه با شرح مسئله و خدمات انجام‌شده.',
+    '/portfolio',
+);
 
 export default function PortfolioPage() {
     return (
