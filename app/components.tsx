@@ -16,6 +16,29 @@ const BrandFavicon = () => (
 export function Icon({ value }: { value: string }) {
     return <span className="icon">{value}</span>;
 }
+export function PhoneReveal({
+    className = '',
+    label = 'نمایش شماره تماس',
+}: {
+    className?: string;
+    label?: string;
+}) {
+    const [revealed, setRevealed] = useState(false);
+    return revealed ? (
+        <a className={className} href="tel:+989157364942" dir="ltr">
+            ۰۹۱۵۷۳۶۴۹۴۲
+        </a>
+    ) : (
+        <button
+            type="button"
+            className={`${className} phone-reveal`}
+            onClick={() => setRevealed(true)}
+            aria-expanded="false"
+        >
+            {label}
+        </button>
+    );
+}
 export function Header() {
     const pathname = usePathname();
     const [menuOpen, setMenuOpen] = useState(false);
@@ -86,9 +109,9 @@ export function Header() {
                         <Link className="btn primary" href="/contact">
                             مشاوره رایگان <b>←</b>
                         </Link>
-                        <a href="tel:+989157364942">۰۹۱۵۷۳۶۴۹۴۲</a>
+                        <PhoneReveal label="نمایش شماره تماس" />
                         <a
-                            href="https://t.me/+989157364942"
+                            href="https://t.me/WEBSAZ_ADMIN"
                             target="_blank"
                             rel="noreferrer"
                         >
@@ -138,9 +161,9 @@ export function Footer() {
                 </div>
                 <div>
                     <b>ارتباط با ما</b>
-                    <a href="tel:+989157364942">۰۹۱۵۷۳۶۴۹۴۲</a>
+                    <PhoneReveal label="نمایش شماره تماس" />
                     <a
-                        href="https://t.me/+989157364942"
+                        href="https://t.me/WEBSAZ_ADMIN"
                         target="_blank"
                         rel="noreferrer"
                     >

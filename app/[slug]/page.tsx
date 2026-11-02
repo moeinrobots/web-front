@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Footer, Header, Icon, PageHero, SectionTitle } from '../components';
+import { Footer, Header, Icon, PageHero, PhoneReveal, SectionTitle } from '../components';
 import { faqs, portfolio, services } from '../data';
 import { ContactForm } from '../contact-form';
 import type { Metadata } from 'next';
@@ -318,9 +318,7 @@ function Contact() {
                     <Icon value="☎" />
                     <span>
                         تلفن تماس
-                        <a href="tel:+989157364942">
-                            <b>۰۹۱۵۷۳۶۴۹۴۲</b>
-                        </a>
+                        <PhoneReveal label="نمایش شماره تماس" />
                     </span>
                 </div>
                 <div>
@@ -328,7 +326,7 @@ function Contact() {
                     <span>
                         پیام‌رسان
                         <a
-                            href="https://t.me/+989157364942"
+                            href="https://t.me/WEBSAZ_ADMIN"
                             target="_blank"
                             rel="noreferrer"
                         >

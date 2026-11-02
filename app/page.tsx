@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Footer, Header, Icon, SectionTitle } from './components';
+import { Footer, Header, Icon, PhoneReveal, SectionTitle } from './components';
 import { faqs, portfolio, services } from './data';
 import { getCollection } from '../lib/api';
 import { absoluteUrl, jsonLd } from '../lib/seo';
@@ -402,9 +402,10 @@ export default async function Home() {
                             <Link className="btn light" href="/contact">
                                 درخواست مشاوره رایگان
                             </Link>
-                            <a className="btn ghost" href="tel:+989157364942">
-                                ۰۹۱۵۷۳۶۴۹۴۲
-                            </a>
+                            <PhoneReveal
+                                className="btn ghost"
+                                label="نمایش شماره تماس"
+                            />
                         </div>
                     </div>
                 </section>

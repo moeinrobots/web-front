@@ -118,14 +118,14 @@
         bottom: 0;
         right: 0;
         left: auto;
-        width: min(360px, calc(100vw - 24px));
-        max-width: 360px;
+        width: min(330px, 88vw);
+        max-width: 330px;
         height: 100dvh;
         margin: 0;
         padding: 0;
         background: #fff;
         border: 0;
-        border-radius: 16px 0 0 16px;
+        border-radius: 0;
         box-shadow: -18px 0 55px rgba(8, 24, 56, 0.2);
         flex-direction: column;
         transform: translateX(110%);
@@ -177,13 +177,14 @@
         display: flex;
         flex-direction: column;
         align-items: stretch;
-        gap: 4px;
-        padding: 18px 12px;
+        gap: 0;
+        padding: 10px 0;
     }
     .site-nav .nav-links > a {
         font-size: 14px;
-        padding: 11px 13px;
-        border-radius: 8px;
+        padding: 13px 20px;
+        border-radius: 0;
+        border-bottom: 1px solid #f0f2f6;
         color: #47546e;
         transition: background .2s, color .2s;
     }
@@ -198,7 +199,7 @@
         vertical-align: 1px;
     }
     .site-nav .nav-links > a:hover {
-        padding-right: 13px;
+        padding-right: 24px;
         background: #f1f4ff;
         color: #3157f6;
     }
@@ -212,12 +213,13 @@
     .sidebar-foot {
         display: flex;
         flex-direction: column;
-        gap: 12px;
-        margin: auto 12px 14px;
-        padding: 14px;
+        gap: 10px;
+        margin: auto 0 0;
+        padding: 18px 20px calc(18px + env(safe-area-inset-bottom));
         background: #f8faff;
-        border: 1px solid #e5eaf5;
-        border-radius: 12px;
+        border: 0;
+        border-top: 1px solid #e5eaf5;
+        border-radius: 0;
     }
     .sidebar-foot > span {
         font-size: 11px;
@@ -237,6 +239,22 @@
     .site-header .nav-cta {
         display: none;
     }
+}
+.phone-reveal {
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+.sidebar-foot > .phone-reveal,
+.sidebar-foot > a[dir='ltr'] {
+    width: 100%;
+    padding: 7px 0;
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
 }
 .brand-favicon {
     width: 34px;

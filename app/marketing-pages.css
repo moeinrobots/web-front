@@ -335,6 +335,21 @@
     padding: 15px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.09);
 }
+.mkt-contact-method.phone-reveal {
+    width: 100%;
+    color: #fff;
+    text-align: right;
+}
+.mkt-contact-method.phone-reveal::before {
+    content: '☎';
+    width: 39px;
+    height: 39px;
+    border-radius: 11px;
+    display: grid;
+    place-items: center;
+    background: rgba(255, 255, 255, 0.09);
+    color: #9db0ff;
+}
 .mkt-contact-method > i {
     width: 39px;
     height: 39px;

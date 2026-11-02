@@ -1,5 +1,5 @@
 import { ContactForm } from '../contact-form';
-import { Footer, Header, PageHero } from '../components';
+import { Footer, Header, PageHero, PhoneReveal } from '../components';
 import { pageMetadata } from '../../lib/seo';
 
 export const metadata = pageMetadata(
@@ -34,16 +34,10 @@ export default function ContactPage() {
                                 </p>
                             </div>
 
-                            <a
+                            <PhoneReveal
                                 className="mkt-contact-method"
-                                href="tel:+989157364942"
-                            >
-                                <i>☎</i>
-                                <span>
-                                    <small>شماره تماس</small>
-                                    <b dir="ltr">۰۹۱۵۷۳۶۴۹۴۲</b>
-                                </span>
-                            </a>
+                                label="نمایش شماره تماس"
+                            />
                             <a
                                 className="mkt-contact-method"
                                 href="mailto:info@websaz.site"
@@ -56,7 +50,7 @@ export default function ContactPage() {
                             </a>
                             <a
                                 className="mkt-contact-method"
-                                href="https://t.me/+989157364942"
+                                href="https://t.me/WEBSAZ_ADMIN"
                                 target="_blank"
                                 rel="noreferrer"
                             >
